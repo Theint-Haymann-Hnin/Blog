@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Project;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects=Project::all();
+        return view('admin.project.index',compact('projects'));
     }
 
     /**
@@ -23,7 +25,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.project.create');
+
     }
 
     /**
@@ -34,7 +37,17 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'url'=>'required'
+
+        ]);
+        Project::create([
+            'name'=>$request->name,
+            'url'=>$request->url
+
+        ]);
+        return redirect('/admin/projects')->with('successAlert','You have successfully created');
     }
 
     /**
@@ -56,7 +69,8 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project=Project::find($id);
+        return view('admin.project.edit',compact('project'));
     }
 
     /**
@@ -68,7 +82,12 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+        $project->update([
+            'name' => $request->name,
+            'url' => $request->url,
+        ]);
+        return redirect('admin/projects')->with('successAlert','You have successfully updated');
     }
 
     /**
@@ -79,6 +98,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::find($id)->delete();
+        return redirect('/admin/projects')->with('successAlert','You have successfully deleted');
     }
 }

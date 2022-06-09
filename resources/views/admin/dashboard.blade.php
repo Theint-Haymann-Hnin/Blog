@@ -40,10 +40,18 @@
                                 Menu
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('admin/users') }}"><i class="fa fa-user"
+                                <a class="nav-link" href="{{ url('admin/users') }}"><i class="fas fa-fw fa-table"
                                         aria-hidden="true"></i>Users</a>
                                 <a class="nav-link" href="{{ url('admin/skills') }}"><i
                                         class="fas fa-fw fa-table"></i>Skills</a>
+                                <a class="nav-link" href="{{ url('admin/projects') }}"><i
+                                        class="fas fa-fw fa-table"></i>Projects</a>
+                                        <a class="nav-link" href="{{ url('admin/studentcounts') }}"><i
+                                            class="fas fa-fw fa-table"></i>Student Counts</a>
+                                            <a class="nav-link" href="{{ url('admin/categories') }}"><i
+                                                class="fas fa-fw fa-table"></i>Categories</a>
+                                                <a class="nav-link" href="{{ url('admin/posts') }}"><i
+                                                    class="fas fa-fw fa-table"></i>Posts</a>
                             </li>
                         </ul>
                     </div>
@@ -85,6 +93,7 @@
         <script src="{{ asset('assets/vendor/charts/c3charts/d3-5.4.0.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/charts/c3charts/C3chartjs.js') }}"></script>
         <script src="{{ asset('assets/libs/js/dashboard-ecommerce.js') }}"></script>
+        @yield('javascript');
 </body>
 
 </html>

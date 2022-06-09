@@ -45,10 +45,10 @@
             </div>
             <!-- NAVBAR SEXTION -->
             <div class="position-sticky" id="navbar">
-                <a href="index.html">HOME</a>
-                <a href="javascript:void(0)">ABOUT ME</a>
-                <a href="javascript:void(0)">SKILLS</a>
-                <a href="posts.html">BLOGS</a>
+                <a  href="{{url('/')}}">HOME</a>
+                <a >ABOUT ME</a>
+                <a >SKILLS</a>
+                <a  href="{{url('/post')}}">BLOGS</a>
                 @if (Auth::check())
                     <a href="">{{ Auth::user()->name }}</a>
                     <a href="" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?'))

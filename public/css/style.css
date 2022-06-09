@@ -96,9 +96,10 @@ body {
     display: block;
     transition: .5s ease;
   }
-  .project-image-div:hover .overlay {
-    bottom: 0;
-    height: 100%;
+  .project-div {
+   padding: 20px;
+   border: 1px solid #AEB6BF;
+   text-align: center;
   }
   .text {
     color: white;

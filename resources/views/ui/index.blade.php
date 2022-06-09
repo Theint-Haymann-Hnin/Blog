@@ -35,7 +35,7 @@
                                         <div class="total-student">
                                             <i class="fas fa-users"></i>
                                             <br>
-                                            <strong>2500</strong>
+                                            <strong>{{$studentcounts->count}}</strong>
                                             <p class="text-center">Total Students</p>
                                         </div>
                                     </div>
@@ -67,36 +67,13 @@
                     <!-- MY PROJECTS SECTION -->
                     <h2 class="text-center">MY PROJECTS</h2><br>
                     <div class="row">
-                        <div class="col-sm-6 col-md-4 mb-2">
-                            <a href="https://www.google.com" target="_blank">
-                                <div class="project-image-div">
-                                    <img src="images/img.jpg" class="project-img" alt="">
-                                    <div class="overlay">
-                                        <div class="text">Google</div>
-                                    </div>
-                                </div>
-                            </a>
+                        @foreach($projects as $project)
+                        <div class="col-sm-6 col-md-4 mb-3">
+                           <div class="project-div">
+                            <i class="fa fa-project-diagram"></i> <a href="{{$project->url}}">{{$project->name}}</a>
+                           </div>
                         </div>
-                        <div class="col-sm-6 col-md-4 mb-2">
-                            <a href="https://www.youtube.com" target="_blank">
-                                <div class="project-image-div">
-                                    <img src="images/img.jpg" class="project-img" alt="">
-                                    <div class="overlay">
-                                        <div class="text">youtube</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-sm-6 col-md-4 mb-2">
-                            <a href="https://www.facebook.com" target="_blank">
-                                <div class="project-image-div">
-                                    <img src="images/img.jpg" class="project-img" alt="">
-                                    <div class="overlay">
-                                        <div class="text">facebook</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
 
                     <br><br><br>

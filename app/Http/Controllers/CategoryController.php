@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Skill;
+use App\Models\Category;
 
-class SkillController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class SkillController extends Controller
      */
     public function index()
     {
-        $skills=Skill::all();
-        return view('admin.skill.index',compact('skills'));
+        $categories=Category::all();
+        return view('admin.category.index',compact('categories'));
     }
 
     /**
@@ -25,7 +25,7 @@ class SkillController extends Controller
      */
     public function create()
     {
-       return view('admin.skill.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -37,16 +37,13 @@ class SkillController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'percent'=>'required'
+            'name'=>'required|unique:categories',
 
         ]);
-        Skill::create([
-            'name'=>$request->name,
-            'percent'=>$request->percent
-
+        Category::create([
+            'name'=>$request->name
         ]);
-        return redirect('/admin/skills')->with('successAlert','You have successfully created');
+        return redirect('/admin/categories')->with('successAlert','You have successfully created');
     }
 
     /**
@@ -68,8 +65,8 @@ class SkillController extends Controller
      */
     public function edit($id)
     {
-        $skill=Skill::find($id);
-        return view('admin.skill.edit',compact('skill'));
+        $category=Category::find($id);
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -81,12 +78,15 @@ class SkillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $skill = Skill::find($id);
-        $skill->update([
-            'name' => $request->name,
-            'percent' => $request->percent,
+        $category = Category::find($id);
+        $request->validate([
+            'name'=>'required|unique:categories',
+
         ]);
-        return redirect('admin/skills')->with('successAlert','You have successfully updated');
+        $category->update([
+            'name' => $request->name
+        ]);
+        return redirect('admin/categories')->with('successAlert','You have successfully updated');
     }
 
     /**
@@ -97,7 +97,7 @@ class SkillController extends Controller
      */
     public function destroy($id)
     {
-        Skill::find($id)->delete();
-        return redirect('/admin/skills')->with('successAlert','You have successfully deleted');
+        Category::find($id)->delete();
+        return redirect('/admin/categories')->with('successAlert','You have successfully deleted');
     }
 }
