@@ -9,6 +9,8 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StudentCountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeDislikeController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,12 @@ use App\Http\Controllers\PostController;
 //Ui
 Route::get('/', [UiController::class, 'index']);
 Route::get('/post', [UiController::class, 'postIndex']);
+Route::get('/post/{id}/detail', [UiController::class, 'postDetail']);
+Route::post('/post/like/{postId}', [LikeDislikeController::class, 'like']);
+Route::post('/post/dislike/{postId}', [LikeDislikeController::class, 'dislike']);
+Route::post('/post/comment/{postId}', [CommentController::class, 'comment']);
+Route::get('/search_posts', [UiController::class, 'search']);
+Route::get('/search_posts_by_category/{categoryId}', [UiController::class, 'searchByCategory']);
 
 //Admin
 Route::group(['prefix'=>'admin','middleware'=> ['auth', 'IsAdmin']],function () {
@@ -45,6 +53,7 @@ Route::group(['prefix'=>'admin','middleware'=> ['auth', 'IsAdmin']],function () 
     Route::resource('/categories', CategoryController::class);
     //Posts
     Route::resource('/posts', PostController::class);
+    Route::post('/comment/{commentId}/show_hide', [PostController::class, 'showHideComment']);
 
 
 });

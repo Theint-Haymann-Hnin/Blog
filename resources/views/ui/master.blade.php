@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
         integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <!-- CUSTOM CSS  -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 
 <body>
@@ -24,7 +24,7 @@
                     <div class="col-md-2">
                     </div>
                     <div class="col-md-4">
-                        <img src="images/img.jpg" id="headerImg" alt="">
+                        <img src="{{asset('images/img.jpg')}}" id="headerImg" alt="">
                     </div>
                     <div class="col-md-4">
                         <br><br><br>
@@ -32,10 +32,10 @@
                         <p class="itme">IT'S ME</p>
                         <p class="hc">THE HAPPY CODER</p>
                         <br>
-                        <a href="posts.html">
+                        <a href="{{url('/post')}}">
                             <button class="btn btn-info">
                                 <i class="fa fa-plus-circle"></i>
-                                Explore My Blogs
+                                Explore  Blogs
                             </button>
                         </a>
                     </div>
@@ -45,21 +45,27 @@
             </div>
             <!-- NAVBAR SEXTION -->
             <div class="position-sticky" id="navbar">
-                <a  href="{{url('/')}}">HOME</a>
-                <a >ABOUT ME</a>
-                <a >SKILLS</a>
-                <a  href="{{url('/post')}}">BLOGS</a>
-                @if (Auth::check())
-                    <a href="">{{ Auth::user()->name }}</a>
-                    <a href="" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?'))
-                    document.getElementById('logout-form').submit()">Logout</a>
-                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                @else
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                @endif
+                <div class="row">
+                    <div class="col-md-9">
+                        <a  href="{{url('/')}}">HOME</a>
+                        <a  href="{{url('/post')}}">BLOGS</a>
+                    </div>
+                    <div class="col-md-3">
+                        @if (Auth::check())
+                        <a href="">{{ Auth::user()->name }}</a>
+                        <a href="" onclick="event.preventDefault(); if(confirm('Are you sure you want to logout?'))
+                        document.getElementById('logout-form').submit()">Logout</a>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <a href="{{ url('/login') }}">Login</a>
+                        <a href="{{ url('/register') }}">Register</a>
+                    @endif
+                    </div>
+                </div>
+               
+               
             </div>
             @yield('ui-content')
             <!-- FOOTER SECTION  -->
@@ -68,7 +74,13 @@
 
                     <div class="col-sm-12 col-md-4 mb-4">
                         <h5>ABOUT THIS WEBSITE</h5>
-                        <p>
+                        <p style="text-align: justify">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae sequi, architecto laborum
+                            excepturi molestiae dolore? Beatae distinctio.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae sequi, architecto laborum
+                            excepturi molestiae dolore? Beatae distinctio.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae sequi, architecto laborum
+                            excepturi molestiae dolore? Beatae distinctio.
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae sequi, architecto laborum
                             excepturi molestiae dolore? Beatae distinctio.
                         </p>
@@ -76,8 +88,8 @@
 
                     <div class="col-sm-12 col-md-4 mb-4">
                         <h5>CONTACT INFO</h5>
-                        <span> <i class="fas fa-mobile-alt"></i> 09798065453 </span> <br>
-                        <span> <i class="far fa-envelope"></i> joe@gmail.com </span>
+                        <span> <i class="fas fa-mobile-alt"></i> 097976654432 </span> <br>
+                        <span> <i class="far fa-envelope"></i> myblog@example.com </span>
                     </div>
 
                     <div class="col-sm-12 col-md-4">
@@ -104,7 +116,7 @@
         </div>
     </div>
     <!-- CUSTOMS JS  -->
-    <script src="js/main.js"></script>
+    <script src="{{asset('js/main.js')}}"></script>
     <!-- BOOTSTRAP JS  -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -116,5 +128,4 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
 </body>
-
 </html>

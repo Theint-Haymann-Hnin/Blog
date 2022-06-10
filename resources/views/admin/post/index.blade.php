@@ -33,7 +33,9 @@
                                     <img src="{{ asset('storage/post-images/' . $post->image) }}" alt="" width="70px">
                                 </td>
                                 <td>{{ $post->title }}</td>
-                                <td>{{ $post->content }}</td>
+                                <td>
+                                    <textarea readonly>{{ $post->content }}</textarea>
+                                </td>
                                 <td>
                                     <form action="{{ url('admin/posts/' . $post->id) }}" method="POST">
                                         @csrf
@@ -45,6 +47,8 @@
                                             style="border-radius:5px;"
                                             onclick="return confirm('Are you sure you want to delete?')"><i
                                                 class="fa fa-trash"></i> Delete </button>
+                                        <a href="{{ url('admin/posts/' . $post->id) }}" class="btn btn-outline-dark btn-sm"
+                                            style="border-radius:5px;"><i class="fa fa-comment"></i> Comment </a>
                                     </form>
                                 </td>
                             </tr>

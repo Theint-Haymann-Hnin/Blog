@@ -39,6 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if($student)
                         <tr>
                             <td>{{ $student->count }}</td>
                             <td>
@@ -61,6 +62,7 @@
                                 </div>
                             </td>
                         </tr>
+                        @endif
                     </tbody>
                 </table>
                 <div class="d-flex justify-content-center mt-3">

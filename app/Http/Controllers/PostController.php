@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
@@ -64,8 +65,25 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $comments =Comment::where('post_id',$id)->get();
+        return view('admin.post.comment',compact('comments'));
+    }
+
+    public function showHideComment($id)
+    {   
+        $comment = Comment::findOrFail($id);
+        if($comment ->status == 'show')
+        {
+        $comment->update([
+            'status'=> 'hide',
+        ]);
+        }else {
+            $comment->update([
+                'status'=> 'show',
+            ]);  
+        }
+        return back()->with('successAlert','Comment status changed successfully');
     }
 
     /**

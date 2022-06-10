@@ -32,9 +32,9 @@
                                     <form action="{{ url('admin/projects/' . $project->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{ url('admin/projects/' . $project->id . '/edit') }}"><button type="button"
-                                                class="btn btn-outline-success btn-sm " style="border-radius:5px;"><i
-                                                    class="fa fa-edit"></i> Edit</button></a>
+                                        <a href="{{ url('admin/projects/' . $project->id . '/edit') }}"><button
+                                                type="button" class="btn btn-outline-success btn-sm mb-2"
+                                                style="border-radius:5px;"><i class="fa fa-edit"></i> Edit</button></a>
                                         <button type="submit" class="btn btn-outline-danger btn-sm"
                                             style="border-radius:5px;"
                                             onclick="return confirm('Are you sure you want to delete?')"><i
